@@ -27,15 +27,10 @@ use Illuminate\Support\Facades\Route;
 //logout
 Route::get("/logout",[AdminController::class,'logout']);
 
-Route::get('/', function () {
-    return view('student_login');
-});
-Route::get('/backend', function () {
-    return view('admin.admin_login');
-});
+Route::get("/",[AdminController::class,'login']);
 
-Route::post("/adminlogin",[AdminController::class,'login_dashboard']);
-Route::post("/studentlogin",[AdminController::class,'student_dashboard']);
+
+Route::post("/",[AdminController::class,'login_dashboard']);
 
 Route::get("/admin_dashboard",[AdminController::class,'admin_dashboard']);
 
