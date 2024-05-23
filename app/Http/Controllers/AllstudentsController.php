@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
@@ -13,8 +14,7 @@ class AllstudentsController extends Controller
     //
     public function allstudent()
     {
-        $allstudent_info=DB::table('student_tbl')->get();
-
+        $allstudent_info= Student::all();
         $manage_student=view('admin.allstudent')->with('all_student_info',$allstudent_info);
         return view('layout')->with('allstudent',$manage_student);
 
@@ -22,9 +22,10 @@ class AllstudentsController extends Controller
     public function studentdelete($student_id)
     {
 
-        DB::table('student_tbl')->where('student_id',$student_id)->delete();
-
-        return Redirect::to('/allstudent');
+        $student = Student::find($student_id);
+        $student->delete();
+        //return Redirect::to('/allstudent');
+        return redirect()->route('allstudent')->with('success', 'Student Deleted Successfully');
     }
 
     public function studentview($student_id){

@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Farzana Rahman Ani',
                 'email' => 'ani@gmail.com',
-                'password' => '1234',
+                'password' => bcrypt('1234'),
                 'role' => 'admin',
                 'sid' => null,
                 'created_at' => 2024_04_20_064141,

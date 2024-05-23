@@ -42,30 +42,12 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar navbar-light col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper">
-        <a class="navbar-brand brand-logo" href="{{URL::to('/admin_dashboard')}}"><img src="images/salt_logo.svg" alt="Logo"></a>
+        <a class="navbar-brand brand-logo" href="{{URL::to('/admin')}}"><img src="images/admin.svg" alt="Logo"></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
         <button class="navbar-toggler navbar-toggler align-self-center mr-2" type="button" data-toggle="minimize">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="btn-group d-none d-sm-block">
-          <button type="button" class="btn btn-secondary btn-sm text-muted border-0 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-          </div>
-        </div>
-        <form class="form-inline mt-2 ml-3 mt-md-0 d-none d-sm-block">
-          <div class="input-group solid">
-            <span class="input-group-addon"><i class="mdi mdi-magnify"></i></span>
-            <input type="text" class="form-control">
-          </div>
-        </form>
         <ul class="navbar-nav ml-lg-auto">
          
           <li class="nav-item dropdown">
@@ -117,10 +99,7 @@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <div class="user-info">
-            <div class="profile">
-              <!-- <img src="http://via.placeholder.com/47x47" alt=""> -->
-              <p class="user-name">Enrollment</p>
-            </div>
+            
             <div class="details">
               <p class="user-name">Farzana Rahman</p>
               <p class="designation">Developer</p>
@@ -138,28 +117,10 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ URL::to('/addstudent')}}">
-                <i class="mdi mdi-puzzle menu-icon"></i>
-                <span class="menu-title">Add Students</span>
-                <span class="badge badge-danger badge-pill ml-auto">New</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#layoutsSubmenu" aria-expanded="false" aria-controls="layoutsSubmenu">
+              <a class="nav-link" href="{{route('allstudent')}}">
                 <i class="mdi mdi-arrow-expand-all menu-icon"></i>
                 <span class="menu-title">Student Information</span>
-                <i class="mdi mdi-chevron-down menu-arrow"></i>
               </a>
-              <div class="collapse" id="layoutsSubmenu">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ URL::to('/tutionfee')}}">Tution Fee</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="pages/layout/rtl-layout.html">Result</a>
-                  </li>
-                </ul>
-              </div>
             </li>
             <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#sidebar_layouts" aria-expanded="false" aria-controls="sidebar_layouts">

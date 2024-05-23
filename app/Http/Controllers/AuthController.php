@@ -11,25 +11,40 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     public function login(){
+
+        if(Auth::check()){
+            if(Auth::user()->role=='student'){
+                return redirect()->route('student_dashboard');
+            }
+            return redirect()->route('admin_dashboard');
+        }
         return view('student_login');
     }
 
-    public function loginPost(Request $request){
+    public function loginPost(Request $request) {
+        // Validate the request data
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
+    
+        // Attempt to authenticate the user with the given credentials
         $credentials = $request->only('email', 'password');
-
+    
         if (auth()->attempt($credentials)) {
-            if(auth()->user()->role == 'admin'){
+            // Check if the authenticated user is an admin
+            if (auth()->user()->role == 'admin') {
                 return redirect()->route('admin_dashboard');
-            }else{
-                return redirect()->route('student_dashboard');
             }
+            return redirect()->route('student_dashboard');
+        } 
+        else {
+             return redirect()->back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ]);
         }
     }
+    
 
     public function register(){
         return view('register');

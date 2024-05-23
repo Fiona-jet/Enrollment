@@ -11,6 +11,7 @@ use App\Http\Controllers\ECEController;
 use App\Http\Controllers\BBAController;
 use App\Http\Controllers\EEEController;
 use App\Http\Controllers\MBAController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,22 +38,20 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'registerPost'])->name('registerPost');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get("/admin_dashboard", [AdminController::class, 'admin_dashboard']);
+    Route::get("/admin", [AdminController::class, 'admin_dashboard'])->name('admin_dashboard');
 
     Route::get("/viewprofile", [AdminController::class, 'viewprofile']);
     Route::get("/setting", [AdminController::class, 'setting']);
 
-    //addstudent
-    Route::get("/addstudent", [AddstudentsController::class, 'addstudent']);
-    Route::post("/save_student", [AddstudentsController::class, 'savestudent']);
-    Route::get("/student_delete/{student_id}", [AllstudentsController::class, 'studentdelete']);
-    Route::get("/student_view/{student_id}", [AllstudentsController::class, 'studentview']);
-    Route::get("/student_edit/{student_id}", [AllstudentsController::class, 'studentedit']);
-    Route::post("/updatae_student/{student_id}", [AllstudentsController::class, 'studentupdate']);
+
+    //student
+    Route::get("/home", [StudentController::class, 'index'])->name('student_dashboard');
+
+    
 
 
 
-    Route::get("/allstudent", [AllstudentsController::class, 'allstudent']);
+    Route::get("/allstudent", [AllstudentsController::class, 'allstudent'])->name('allstudent');
     Route::get("/tutionfee", [TutionController::class, 'tution']);
     Route::get("/cse", [CSEController::class, 'cse']);
     Route::get("/ece", [ECEController::class, 'ece']);
