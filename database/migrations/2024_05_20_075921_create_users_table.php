@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
+            $table->string('name');
             $table->string('password');
             $table->string('email');
             $table->unsignedBigInteger('sid')->nullable();
-            $table->foreign('sid')->references('id')->on('student_tbl');
+            $table->foreign('sid')->references('id')->on('students');
             $table->enum('role',['admin','student'])->default('student');
             $table->timestamps();
         });

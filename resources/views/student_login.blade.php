@@ -3,11 +3,12 @@
 
 
 <!-- Mirrored from www.urbanui.com/salt/jquery/pages/samples/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 13 Dec 2017 12:33:56 GMT -->
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Salt Admin</title>
+  <title>Login Page</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../node_modules/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="../../node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css">
@@ -31,41 +32,30 @@
               <h3 class="card-title text-left mb-3">Login</h3>
 
               @if (session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
+              <div class="alert alert-danger">
+                {{ session('error') }}
+              </div>
+              @endif
 
 
-              <form action="adminlogin" method="POST"action="{{ url('/studentlogin')}}">
+              <form action="{{route('loginPost')}}" method="POST">
                 <div class="form-group">
-                @csrf
-                  <label>Username or email *</label>
-                  <input type="text" name="student_email" placeholder="email" class="form-control p_input">
+                  @csrf
+                  <label>Email</label>
+                  <input type="text" name="email" placeholder="Email" class="form-control p_input">
                 </div>
                 <div class="form-group">
-                  <label>Password *</label>
-                  <input type="text" name="student_password" placeholder="password" class="form-control p_input">
-                </div>
-                <div class="form-group d-flex align-items-center justify-content-between">
-                  <div class="icheck-square">
-                    <input tabindex="1" type="checkbox" id="remember">
-                    <label for="remember">Remember me</label>
-                  </div>
-                  <a href="#" class="forgot-pass">Forgot password</a>
+                  <label>Password</label>
+                  <input type="password" name="password" placeholder="Password" class="form-control p_input">
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
                 </div>
-
-
-
-
                 <div class="d-flex justify-content-center mb-4">
                   <a href="#" class="facebook-login btn btn-facebook mr-2">Facebook</a>
-                  <a href="#" class="google-login btn btn-google">Google+</a>
+                  <a href="#" class="google-login btn btn-google">Instagram</a>
                 </div>
-                <small class="text-center d-block">Don't have an Account?<a href="#"> Sign Up</a></small>
+                <small class="text-center d-block">Don't have an Account?<a href="/register"> Sign Up</a></small>
               </form>
             </div>
           </div>
@@ -93,4 +83,5 @@
 
 
 <!-- Mirrored from www.urbanui.com/salt/jquery/pages/samples/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 13 Dec 2017 12:33:56 GMT -->
+
 </html>
