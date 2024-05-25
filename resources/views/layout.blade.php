@@ -42,7 +42,7 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar navbar-light col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper">
-        <a class="navbar-brand brand-logo" href="{{URL::to('/admin')}}"><img src="images/admin.svg" alt="Logo"></a>
+        <a class="navbar-brand brand-logo" href="{{URL::to('/admin')}}">Admin Panel</a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
         <button class="navbar-toggler navbar-toggler align-self-center mr-2" type="button" data-toggle="minimize">
@@ -111,12 +111,6 @@
               <span class="nav-link">Main</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ URL::to('/allstudent')}}">
-                <i class="mdi mdi-gauge menu-icon"></i>
-                <span class="menu-title">All Student</span>
-              </a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="{{route('allstudent')}}">
                 <i class="mdi mdi-arrow-expand-all menu-icon"></i>
                 <span class="menu-title">Student Information</span>
@@ -131,19 +125,10 @@
               <div class="collapse" id="sidebar_layouts">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ URL::to('/cse')}}">CSE</a>
+                    <a class="nav-link" href="{{ route('courses')}}">Course List</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ URL::to('/bba')}}">BBA</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ URL::to('/ece')}}">ECE</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ URL::to('/eee')}}">EEE</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ URL::to('/mba')}}">MBA</a>
+                    <a class="nav-link" href="{{ route('add-course')}}">Add Course</a>
                   </li>
                 </ul>
               </div>

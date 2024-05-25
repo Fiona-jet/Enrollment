@@ -9,6 +9,7 @@ use App\Http\Controllers\TutionController;
 use App\Http\Controllers\CSEController;
 use App\Http\Controllers\ECEController;
 use App\Http\Controllers\BBAController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EEEController;
 use App\Http\Controllers\MBAController;
 use App\Http\Controllers\StudentController;
@@ -38,29 +39,27 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'registerPost'])->name('registerPost');
 
 Route::group(['middleware' => 'auth'], function () {
+    //admin
     Route::get("/admin", [AdminController::class, 'admin_dashboard'])->name('admin_dashboard');
-
     Route::get("/viewprofile", [AdminController::class, 'viewprofile']);
     Route::get("/setting", [AdminController::class, 'setting']);
+    Route::get("/allstudent", [StudentController::class, 'index'])->name('allstudent');
+
+
+    //all routes for courses
+    Route::get('/courses', [CourseController::class, 'index'])->name('courses');
+    Route::get('/addcourse', [CourseController::class, 'addcourse'])->name('add-course');
+    
+
+    //all routes for teachers    
+    Route::get("/allteacher", [TeacherController::class, 'allteacher']);
+    Route::get("/addteacher", [TeacherController::class, 'addteacher']);
+    Route::post("/save_teacher", [TeacherController::class, 'saveteacher']);
+
 
 
     //student
     Route::get("/home", [StudentController::class, 'index'])->name('student_dashboard');
-
-    
-
-
-
-    Route::get("/allstudent", [AllstudentsController::class, 'allstudent'])->name('allstudent');
-    Route::get("/tutionfee", [TutionController::class, 'tution']);
-    Route::get("/cse", [CSEController::class, 'cse']);
-    Route::get("/ece", [ECEController::class, 'ece']);
-    Route::get("/bba", [BBAController::class, 'bba']);
-    Route::get("/eee", [EEEController::class, 'eee']);
-    Route::get("/mba", [MBAController::class, 'mba']);
-    Route::get("/allteacher", [TeacherController::class, 'allteacher']);
-    Route::get("/addteacher", [TeacherController::class, 'addteacher']);
-    Route::post("/save_teacher", [TeacherController::class, 'saveteacher']);
 });
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
