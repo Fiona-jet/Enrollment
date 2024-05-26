@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
@@ -11,12 +12,10 @@ use Illuminate\Support\Facades\Session;
 class TeacherController extends Controller
 {
     //
-    public function allteacher()
+    public function index()
     {
-        $allteacher_info=DB::table('teachers_tbl')->get();
-
-        $manage_teacher=view('admin.allteacher')->with('all_teacher_info',$allteacher_info);
-        return view('layout')->with('allteacher',$manage_teacher);
+        $teachers = Teacher::all();
+        return view('admin.allteacher',compact('teachers'));
 
     }
     public function addteacher()
@@ -25,31 +24,39 @@ class TeacherController extends Controller
 
     }
     public function saveteacher(Request $request)
-    {
+    { 
+        //validate the request
 
-        $data=array();
-        $data['teachers_name']=$request->teachers_name;
-        $data['teachers_phone']=$request->teachers_phone;
-        $data['teachers_address']=$request->teachers_address;
-        $data['teachers_department']=$request->teachers_department;
-        $image=$request->file('teachers_image');
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email|unique:teachers,email',
+            'address' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'department' => 'required',
+        ]);
 
+        $teacher = new Teacher();
 
-        if ($image) {
-            $image_name = Str::random(20);
-            $ext = strtolower($image->getClientOriginalExtension());
-            $image_full_name = $image_name . '.' . $ext;
-            $upload_path = 'image/';
-            $image_url = $upload_path . $image_full_name;
-            $success = $image->move($upload_path, $image_full_name);
-            if ($success) {
-                $data['teachers_image'] = $image_url;
-            }
+        $teacher->name = $request->name;
+        $teacher->phone = $request->phone;
+        $teacher->email = $request->email;
+        $teacher->address = $request->address;
+        $teacher->department = $request->department;
+
+        if($request->hasFile('image')){
+            $photo = $request->file('image');
+            $filename = time() . '.' . $photo->getClientOriginalExtension();
+            $path = $photo->storeAs('uploads/courses', $filename, 'public');
+            $teacher->image = $filename;
+            $teacher->save();
         }
 
-        DB::table('teachers_tbl')->insert($data);
-        Session::flash('success', 'Teacher Added Successfully'); // Flash a success message
-        return Redirect::to('/addteacher'); 
+        $teacher->save();
 
+        if(!$teacher->save()){
+            return Redirect::back()->withInput()->withErrors(['error', 'Something went wrong']);
+        }
+        return redirect()->route('allteacher')->with('success','Teacher added successfully');
     }
 }
