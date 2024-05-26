@@ -3,6 +3,7 @@
 
 
 <!-- Mirrored from www.urbanui.com/salt/jquery/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 13 Dec 2017 12:31:57 GMT -->
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -21,6 +22,7 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="/images/favicon.html" />
 </head>
+
 <body class="sidebar-dark">
   <!-- partial:partials/_settings-panel.html -->
   <div class="settings-panel">
@@ -49,7 +51,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <ul class="navbar-nav ml-lg-auto">
-         
+
           <li class="nav-item dropdown">
             <a class="nav-link count-indicator" id="MailDropdown" href="#" data-toggle="dropdown">
               <i class="mdi mdi-message-outline"></i>
@@ -59,7 +61,7 @@
               <a class="dropdown-item" href="{{ URL::to('viewprofile')}}">
                 <div class="sender-img">
                   <img src="http://via.placeholder.com/47x47" alt="">
-                  
+
                 </div>
                 <div class="sender">
                   <p class="Sende-name">View Profile</p>
@@ -68,23 +70,23 @@
               <a class="dropdown-item" href="{{ URL::to('setting')}}">
                 <div class="sender-img">
                   <img src="http://via.placeholder.com/47x47" alt="">
-                 
+
                 </div>
                 <div class="sender">
                   <p class="Sende-name">Settings</p>
                 </div>
               </a>
-              
+
               <a class="dropdown-item" href="{{ URL::to('/logout')}}">
                 <div class="sender-img">
                   <img src="http://via.placeholder.com/47x47" alt="">
-                 
+
                 </div>
                 <div class="sender">
                   <p class="Sende-name">Logout</p>
                 </div>
               </a>
-            
+
             </div>
           </li>
         </ul>
@@ -99,7 +101,7 @@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <div class="user-info">
-            
+
             <div class="details">
               <p class="user-name">Farzana Rahman</p>
               <p class="designation">Developer</p>
@@ -134,10 +136,10 @@
               </div>
             </li>
             <!--main pages end-->
-            
-           
+
+
             <!--forms start-->
-           
+
             <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#advancedSubmenu" aria-expanded="false" aria-controls="advancedSubmenu">
                 <i class="mdi mdi-repeat menu-icon"></i>
@@ -147,21 +149,20 @@
               <div class="collapse" id="advancedSubmenu">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ URL::to('/addteacher')}}">Add Teacher</a>
-                    <a class="nav-link" href="{{ URL::to('/allteacher')}}">All Teacher</a>
+                    <a class="nav-link" href="{{ route('add-teacher')}}">Add Teacher</a>
+                    <a class="nav-link" href="{{ route('allteacher')}}">All Teacher</a>
                   </li>
-                 
                 </ul>
               </div>
             </li>
-             
+
           </ul>
         </nav>
         <!-- partial -->
         <div class="content-wrapper">
           <div class="row">
 
-          @yield('content')
+            @yield('content')
           </div>
         </div>
         <!-- content-wrapper ends -->
@@ -169,7 +170,7 @@
         <footer class="footer">
           <div class="container-fluid clearfix">
             <span class="float-right">
-                <a href="#">Admin</a> &copy; 2017
+              <a href="#">Admin</a> &copy; 2017
             </span>
           </div>
         </footer>
@@ -214,23 +215,22 @@
 
   <!-- End custom js for this page-->
 
-<script>
-
-$(document).on("click","#delete",function(e){
-  e.preventDefault();
-  var link = $(this).attr("href");
-  bootbox.confirm("Are you want to delete!!",function(confirmed){
-    if(confirmed){
-      window.location.href=link;
-    };
-  });
-});
-
-</script>
+  <script>
+    $(document).on("click", "#delete", function(e) {
+      e.preventDefault();
+      var link = $(this).attr("href");
+      bootbox.confirm("Are you want to delete!!", function(confirmed) {
+        if (confirmed) {
+          window.location.href = link;
+        };
+      });
+    });
+  </script>
 
 
 </body>
 
 
 <!-- Mirrored from www.urbanui.com/salt/jquery/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 13 Dec 2017 12:32:50 GMT -->
+
 </html>

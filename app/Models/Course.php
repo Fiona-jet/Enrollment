@@ -17,4 +17,9 @@ class Course extends Model
         'course_totalclass',
         'teacher_id'
     ];
+
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class, 'teacher_id', 'id');
+    }
 }

@@ -23,38 +23,17 @@
               <th>Image</th>
               <th>Address</th>
               <th>Department</th>
-              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             @foreach($all_student_info as $v_student)
             <tr>
-              <td>{{$v_student->student_roll}}</td>
-              <td>{{$v_student->student_name}}</td>
-              <td>{{$v_student->student_phone}}</td>
-              <td><img src="{{URL::to($v_student->student_image)}}" height="80" width="100" style="border-radius: 50%;"> </td>
-              <td>{{$v_student->student_address}}</td>
-              <td>
-
-                @if ($v_student->student_department==1)
-
-                <span class="label label-success">{{'CSE'}}</span>
-                @elseif ($v_student->student_department==2)
-                <span class="label label-primary">{{'BBA'}}</span>
-                @elseif ($v_student->student_department==3)
-                <span class="label label-warning">{{'EEE'}}</span>
-                @elseif ($v_student->student_department==4)
-                <span class="label label-info">{{'ECE'}}</span>
-                @else
-                <span class="label label-important">{{'Not Defined'}}</span>
-                @endif
-              </td>
-
-              <td>
-                <a href="{{URL::to('/student_view/'.$v_student->student_id)}}"><button class="btn btn-outline-primary">View</button></a>
-                <a href="{{URL::to('/student_edit/'.$v_student->student_id)}}"><button class="btn btn-outline-warning">Edit</button></a>
-                <a href="{{URL::to('/student_delete/'.$v_student->student_id)}}" id="delete"><button class="btn btn-outline-danger">Delete</button></a>
-              </td>
+              <td>{{$v_student->roll}}</td>
+              <td>{{$v_student->name}}</td>
+              <td>{{$v_student->phone}}</td>
+              <td><img src="{{ asset('uploads/students/' . $v_student->image) }}" alt="Student Photo" height="80" width="100" style="border-radius: 50%;"> </td>
+              <td>{{$v_student->address}}</td>
+              <td>{{$v_student->department}}</td>
             </tr>
             @endforeach
           </tbody>
@@ -63,5 +42,4 @@
     </div>
   </div>
 </div>
-
 @endsection

@@ -49,12 +49,13 @@ Route::group(['middleware' => 'auth'], function () {
     //all routes for courses
     Route::get('/courses', [CourseController::class, 'index'])->name('courses');
     Route::get('/addcourse', [CourseController::class, 'addcourse'])->name('add-course');
+    Route::post('/addcourse', [CourseController::class, 'savecourse'])->name('save-course');
     
 
     //all routes for teachers    
-    Route::get("/allteacher", [TeacherController::class, 'allteacher']);
-    Route::get("/addteacher", [TeacherController::class, 'addteacher']);
-    Route::post("/save_teacher", [TeacherController::class, 'saveteacher']);
+    Route::get("/allteacher", [TeacherController::class, 'allteacher'])->name('allteacher');
+    Route::get("/addteacher", [TeacherController::class, 'addteacher'])->name('add-teacher');
+    Route::post("/save_teacher", [TeacherController::class, 'saveteacher'])->name('save-teacher');
 
 
 
