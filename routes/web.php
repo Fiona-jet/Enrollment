@@ -11,6 +11,7 @@ use App\Http\Controllers\ECEController;
 use App\Http\Controllers\BBAController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EEEController;
+use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\MBAController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
@@ -40,10 +41,11 @@ Route::post('/register', [AuthController::class, 'registerPost'])->name('registe
 
 Route::group(['middleware' => 'auth'], function () {
     //admin
-    Route::get("/admin", [AdminController::class, 'admin_dashboard'])->name('admin_dashboard');
-    Route::get("/viewprofile", [AdminController::class, 'viewprofile']);
-    Route::get("/setting", [AdminController::class, 'setting']);
-    Route::get("/allstudent", [StudentController::class, 'index'])->name('allstudent');
+    Route::get('/admin', [AdminController::class, 'admin_dashboard'])->name('admin_dashboard');
+    Route::get('/viewprofile', [AdminController::class, 'viewprofile']);
+    Route::get('/setting', [AdminController::class, 'setting'])->name('setting');
+    Route::get('/allstudent', [StudentController::class, 'admin'])->name('allstudent');
+    Route::get('enrollment', [EnrollmentController::class, 'index'])->name('enrollments');
 
 
     //all routes for courses

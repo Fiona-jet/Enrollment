@@ -58,9 +58,9 @@
               <span class="count bg-danger">4</span>
             </a>
             <div class="dropdown-menu navbar-dropdown mail-notification" aria-labelledby="MailDropdown">
-              <a class="dropdown-item" href="{{ URL::to('setting')}}">
+              <a class="dropdown-item" href="{{ route('setting')}}">
                 <div class="sender-img">
-                  <img src="http://via.placeholder.com/47x47" alt="">
+                  <img src="{{asset('images/settings.png')}}" alt="Icon">
 
                 </div>
                 <div class="sender">
@@ -68,9 +68,9 @@
                 </div>
               </a>
 
-              <a class="dropdown-item" href="{{ URL::to('/logout')}}">
+              <a class="dropdown-item" href="{{ route('logout')}}">
                 <div class="sender-img">
-                  <img src="http://via.placeholder.com/47x47" alt="">
+                  <img src="{{asset('images/logout.png')}}" alt="Icon">
 
                 </div>
                 <div class="sender">
@@ -146,7 +146,12 @@
                 </ul>
               </div>
             </li>
-
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('enrollments')}}">
+                <i class="mdi mdi-arrow-expand-all menu-icon"></i>
+                <span class="menu-title">Enrollment</span>
+              </a>
+            </li>
           </ul>
         </nav>
         <!-- partial -->
