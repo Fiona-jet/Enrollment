@@ -55,7 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
     //all routes for teachers    
     Route::get('/allteacher', [TeacherController::class, 'index'])->name('allteacher');
     Route::get('/addteacher', [TeacherController::class, 'addteacher'])->name('add-teacher');
-    Route::post('/addteacher', [TeacherController::class, 'saveteacher'])->name('save-teacher');
+    Route::post('/addteacher', [TeacherController::class, 'saveTeacher'])->name('save-teacher');
 
 
 

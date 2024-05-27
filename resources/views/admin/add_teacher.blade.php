@@ -13,7 +13,7 @@
             @endif
 
 
-            <form action="{{route('save-teacher')}}" class="forms-sample" method="POST" enctype="multipart/form-data">
+            <form method="post" action="{{ route('save-teacher') }}" enctype="multipart/form-data" class="froms-sample">
                 @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1">Teacher Name</label>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Photo</label>
-                    <input type="file" class="form-control p-input" name="address">
+                    <input type="file" class="form-control p-input" name="image">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Teacher Department</label>

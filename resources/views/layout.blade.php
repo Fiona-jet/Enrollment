@@ -58,15 +58,6 @@
               <span class="count bg-danger">4</span>
             </a>
             <div class="dropdown-menu navbar-dropdown mail-notification" aria-labelledby="MailDropdown">
-              <a class="dropdown-item" href="{{ URL::to('viewprofile')}}">
-                <div class="sender-img">
-                  <img src="http://via.placeholder.com/47x47" alt="">
-
-                </div>
-                <div class="sender">
-                  <p class="Sende-name">View Profile</p>
-                </div>
-              </a>
               <a class="dropdown-item" href="{{ URL::to('setting')}}">
                 <div class="sender-img">
                   <img src="http://via.placeholder.com/47x47" alt="">
@@ -170,7 +161,7 @@
         <footer class="footer">
           <div class="container-fluid clearfix">
             <span class="float-right">
-              <a href="#">Admin</a> &copy; 2017
+              <a href="#">Admin</a> &copy; 2024
             </span>
           </div>
         </footer>

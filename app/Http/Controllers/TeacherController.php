@@ -15,16 +15,14 @@ class TeacherController extends Controller
     public function index()
     {
         $teachers = Teacher::all();
-        return view('admin.allteacher',compact('teachers'));
-
+        return view('admin.allteacher', compact('teachers'));
     }
     public function addteacher()
     {
         return view('admin.add_teacher');
-
     }
-    public function saveteacher(Request $request)
-    { 
+    public function saveTeacher(Request $request)
+    {
         //validate the request
 
         $request->validate([
@@ -44,11 +42,12 @@ class TeacherController extends Controller
         $teacher->address = $request->address;
         $teacher->department = $request->department;
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $photo = $request->file('image');
             $filename = time() . '.' . $photo->getClientOriginalExtension();
-            $path = $photo->storeAs('uploads/courses', $filename, 'public');
-            $teacher->image = $filename;
+            // Specify the path within the public disk
+            $path = $photo->storeAs('uploads/teachers', $filename, 'public');
+            $teacher->image = $filename; // Save the full path or just the filename, as needed
             $teacher->save();
         }
 
