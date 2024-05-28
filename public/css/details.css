@@ -1,0 +1,19 @@
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+.card-header {
+    background-color: #007BFF;
+    color: white;
+}
+
+.card-footer {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.text-strike {
+    text-decoration: line-through;
+    color: grey;
+}

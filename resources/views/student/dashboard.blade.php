@@ -1,68 +1,50 @@
-@extends('student_layout')
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="col-sm-6 col-md-3 grid-margin">
-              <div class="card">
-                <div class="card-body">
-                  <h2 class="card-title">All Students</h2>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enrollment</title>
+  <link rel="stylesheet" href="{{asset('css/home.css')}}">
+</head>
 
-                  @php
-                  $student=DB::table('student_tbl')
-                  ->count('student_id');
+<body>
+  <header>
+    <div class="logo">
+      <h1>Enrollment</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="{{route('viewprofile')}}">{{auth()->user()->name}}</a></li>
+        <li><a href="{{route('learnings')}}">My Courses</a></li>
+        <li><a href="{{route('logout')}}">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
 
-                  @endphp
+  <main>
+    <section class="featured-courses">
+      <h1>Featured Courses</h1>
+      <div class="courses-container">
+        @foreach ($courses as $course )
+        <div class="course">
+          <img src="{{ asset('uploads/courses/' . $course->image) }}" alt="Image" style="width: 100px; height: 100px;">
+          <h2>{{$course->name}}</h2>
+          <p>Teacher: {{$course->teacher->name}}</p>
+          <p>Price: {{$course->fee}}</p>
+          <a href="{{route('details', $course->id)}}">Details</a>
+          <button onclick="enrollNow()">Enroll Now</button>
+        </div>
+        @endforeach
+    </section>
+  </main>
 
-                  <p style="font-family : cursive; font-size:20px; font-weight:bold; text-align:center;">{{$student}}</p>
 
-                </div>
-                <div class="dashboard-chart-card-container">
-                  <div id="dashboard-card-chart-1" class="card-float-chart"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3 grid-margin">
-              <div class="card">
-                <div class="card-body">
-                  <h2 class="card-title">All Teachers</h2>
-                  
-                  @php
-                  $teacher=DB::table('teachers_tbl')
-                  ->count('teachers_id');
+  <footer>
+    <p>Copyright © 2024 Enrollment</p>
+  </footer>
 
-                  @endphp
+  <script src="scripts.js"></script>
+</body>
 
-                  <p style="font-family : cursive; font-size:20px; font-weight:bold; text-align:center;">{{$teacher}}</p>
-                </div>
-                <div class="dashboard-chart-card-container">
-                  <div id="dashboard-card-chart-2" class="card-float-chart"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3 grid-margin">
-              <div class="card">
-                <div class="card-body">
-                  <h2 class="card-title">Tution Fees</h2>
-                  <p style="font-family : cursive; font-size:20px; font-weight:bold; text-align:center;">Monthly=2500 tk</p>
-                </div>
-                <div class="dashboard-chart-card-container">
-                  <div id="dashboard-card-chart-3" class="card-float-chart"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3 grid-margin">
-              <div class="card">
-                <div class="card-body">
-                  <h2 class="card-title">Revenue</h2>
-                  <p style="font-family : cursive; font-size:20px; font-weight:bold; text-align:center;">Revenue</p>
-                </div>
-                <div class="dashboard-chart-card-container">
-                  <div id="dashboard-card-chart-4" class="card-float-chart"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          
-          
-
-@endsection
+</html>

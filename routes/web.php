@@ -62,6 +62,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     //student
     Route::get("/home", [StudentController::class, 'index'])->name('student_dashboard');
+    Route::get('/profile', [StudentController::class, 'viewprofile'])->name('viewprofile');
+    Route::put('/profile', [StudentController::class, 'updateprofile'])->name('profile.update');
+    Route::get('/learings', [StudentController::class, 'learning'])->name('learnings');
+    Route::get('/details/{id}', [StudentController::class, 'show'])->name('details');
 });
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
