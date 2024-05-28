@@ -28,7 +28,7 @@
   <div class="card">
     <div class="card-body">
       <h2 class="card-title">Tution Fees</h2>
-      <p style="font-family : cursive; font-size:20px; font-weight:bold; text-align:center;">Monthly=2500 tk</p>
+      <p style="font-family : cursive; font-size:20px; font-weight:bold; text-align:center;">{{$tution}} BDT</p>
     </div>
     <div class="dashboard-chart-card-container">
       <div id="dashboard-card-chart-3" class="card-float-chart"></div>
@@ -39,7 +39,7 @@
   <div class="card">
     <div class="card-body">
       <h2 class="card-title">Revenue</h2>
-      <p style="font-family : cursive; font-size:20px; font-weight:bold; text-align:center;">Revenue</p>
+      <p style="font-family : cursive; font-size:20px; font-weight:bold; text-align:center;">{{$revenue}} BDT</p>
     </div>
     <div class="dashboard-chart-card-container">
       <div id="dashboard-card-chart-4" class="card-float-chart"></div>

@@ -43,7 +43,6 @@ Route::group(['middleware' => 'auth'], function () {
     //admin
     Route::get('/admin', [AdminController::class, 'admin_dashboard'])->name('admin_dashboard');
     Route::get('/viewprofile', [AdminController::class, 'viewprofile']);
-    Route::get('/setting', [AdminController::class, 'setting'])->name('setting');
     Route::get('/allstudent', [StudentController::class, 'admin'])->name('allstudent');
     Route::get('enrollment', [EnrollmentController::class, 'index'])->name('enrollments');
 

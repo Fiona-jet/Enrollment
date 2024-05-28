@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\Admin;
+use App\Models\Enrollment;
 use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\Session;
@@ -21,7 +22,9 @@ class AdminController extends Controller
     {
         $student = Student::all()->count();
         $teacher = Teacher::all()->count();
-        return view('admin.dashboard', compact('student', 'teacher'));
+        $tution = Enrollment::all()->sum('tution_fee');
+        $revenue = Enrollment::all()->sum('revenue');
+        return view('admin.dashboard', compact('student', 'teacher', 'tution', 'revenue'));
     }
 
     //viewprofile

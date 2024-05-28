@@ -58,16 +58,6 @@
               <span class="count bg-danger">4</span>
             </a>
             <div class="dropdown-menu navbar-dropdown mail-notification" aria-labelledby="MailDropdown">
-              <a class="dropdown-item" href="{{ route('setting')}}">
-                <div class="sender-img">
-                  <img src="{{asset('images/settings.png')}}" alt="Icon">
-
-                </div>
-                <div class="sender">
-                  <p class="Sende-name">Settings</p>
-                </div>
-              </a>
-
               <a class="dropdown-item" href="{{ route('logout')}}">
                 <div class="sender-img">
                   <img src="{{asset('images/logout.png')}}" alt="Icon">
