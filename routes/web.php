@@ -13,6 +13,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EEEController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\MBAController;
+use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +67,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/profile', [StudentController::class, 'updateprofile'])->name('profile.update');
     Route::get('/learings', [StudentController::class, 'learning'])->name('learnings');
     Route::get('/details/{id}', [StudentController::class, 'show'])->name('details');
+
+
+    // SSLCOMMERZ Start
+    Route::get('/example1/{id}', [SslCommerzPaymentController::class, 'exampleEasyCheckout'])->name('checkout1');
+    Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout'])->name('checkout2');
+
+    Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+    Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+    Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+    Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+    Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+    Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 });
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

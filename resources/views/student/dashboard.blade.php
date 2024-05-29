@@ -33,7 +33,7 @@
           <p>Teacher: {{$course->teacher->name}}</p>
           <p>Price: {{$course->fee}}</p>
           <a href="{{route('details', $course->id)}}">Details</a>
-          <button onclick="enrollNow()">Enroll Now</button>
+          <button onclick="window.location='{{route('checkout1',$course->id)}}'">Enroll Now</button>
         </div>
         @endforeach
     </section>
