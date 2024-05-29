@@ -32,8 +32,14 @@
           <h2>{{$course->name}}</h2>
           <p>Teacher: {{$course->teacher->name}}</p>
           <p>Price: {{$course->fee}}</p>
+          
           <a href="{{route('details', $course->id)}}">Details</a>
-          <button onclick="window.location='{{route('checkout2',$course->id)}}'">Enroll Now</button>
+          @if (!in_array($course->id, $enrolledCourses))
+            <button onclick="window.location='{{ route('checkout2', $course->id) }}'">Enroll Now</button>
+          @endif
+          @if (in_array($course->id, $enrolledCourses))
+            <button>Enrolled</button>
+          @endif
         </div>
         @endforeach
     </section>

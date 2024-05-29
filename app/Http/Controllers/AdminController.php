@@ -22,7 +22,7 @@ class AdminController extends Controller
     {
         $student = Student::all()->count();
         $teacher = Teacher::all()->count();
-        $tution = Enrollment::all()->sum('tution_fee');
+        $tution = Enrollment::all()->sum('tuition_fee');
         $revenue = Enrollment::all()->sum('revenue');
         return view('admin.dashboard', compact('student', 'teacher', 'tution', 'revenue'));
     }

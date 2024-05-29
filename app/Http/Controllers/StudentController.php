@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Enrollment;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,7 +20,9 @@ class StudentController extends Controller
     public function index()
     {
         $courses = Course::all();
-        return view('student.dashboard', compact('courses'));
+        $studentId = auth()->user()->sid;
+        $enrolledCourses = Enrollment::where('student_id', $studentId)->pluck('course_id')->toArray();
+        return view('student.dashboard', compact('courses', 'enrolledCourses'));
     }
 
     public function viewprofile()
@@ -78,6 +81,14 @@ class StudentController extends Controller
     public function show($id)
     {
         $course = Course::findOrFail($id);
-        return view('student.details', compact('course'));
+        $studentId = auth()->user()->sid;
+        $enrolledCourses = Enrollment::where('student_id', $studentId)->pluck('course_id')->toArray();
+        return view('student.details', compact('course', 'enrolledCourses'));
+    }
+
+    public function learning()
+    {
+        $enrollments = Enrollment::where('student_id', auth()->user()->sid)->get();
+        return view('student.learning', compact('enrollments'));
     }
 }
