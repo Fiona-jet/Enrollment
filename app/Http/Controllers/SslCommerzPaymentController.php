@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
 use App\Models\Course;
+use App\Models\Enrollment;
 use Illuminate\Support\Facades\DB;
 
 class SslCommerzPaymentController extends Controller
@@ -17,9 +18,10 @@ class SslCommerzPaymentController extends Controller
         return view('exampleEasycheckout', compact('course'));
     }
 
-    public function exampleHostedCheckout()
+    public function exampleHostedCheckout($id)
     {
-        return view('exampleHosted');
+        $course = Course::findOrFail($id);
+        return view('exampleHosted', compact('course'));
     }
 
     public function index(Request $request)
@@ -62,6 +64,8 @@ class SslCommerzPaymentController extends Controller
         $post_data['value_c'] = "ref003";
         $post_data['value_d'] = "ref004";
 
+        
+
         #Before  going to initiate the payment order status need to insert or update as Pending.
         $update_product = DB::table('orders')
             ->where('transaction_id', $post_data['tran_id'])
@@ -76,6 +80,16 @@ class SslCommerzPaymentController extends Controller
                 'currency' => $post_data['currency']
             ]);
 
+        $enrollment = new Enrollment();
+
+        $course = Course::findOrFail($request->course_id);
+
+        $enrollment->student_id = auth()->user()->sid;
+        $enrollment->course_id = $request->course_id;
+        $enrollment->tuition_fee = $course->fee;
+        $enrollment->revenue = $course->fee - $course->teacher_fee;
+
+        $enrollment->save();
         $sslc = new SslCommerzNotification();
         # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
         $payment_options = $sslc->makePayment($post_data, 'hosted');
@@ -85,6 +99,7 @@ class SslCommerzPaymentController extends Controller
             $payment_options = array();
         }
 
+        
     }
 
     public function payViaAjax(Request $request)
@@ -182,17 +197,19 @@ class SslCommerzPaymentController extends Controller
                     ->update(['status' => 'Processing']);
 
                 echo "<br >Transaction is successfully Completed";
+                return redirect()->route('student_dashboard')->with('success', 'Payment Successful');
             }
         } else if ($order_details->status == 'Processing' || $order_details->status == 'Complete') {
             /*
              That means through IPN Order status already updated. Now you can just show the customer that transaction is completed. No need to udate database.
              */
             echo "Transaction is successfully Completed";
+            return redirect()->route('student_dashboard')->with('success', 'Payment Successful');
         } else {
             #That means something wrong happened. You can redirect customer to your product page.
             echo "Invalid Transaction";
+            return redirect()->route('student_dashboard')->with('error', 'Invalid Transaction');
         }
-
 
     }
 
@@ -281,5 +298,7 @@ class SslCommerzPaymentController extends Controller
             echo "Invalid Data";
         }
     }
+
+    
 
 }

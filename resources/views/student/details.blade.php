@@ -20,7 +20,7 @@
                 <h3>Price: {{$course->fee}} BDT</h3>
             </div>
             <div>
-                <a href="{{route('checkout1',$course->id)}}" class="btn btn-primary">Enroll Now</a>
+                <a href="{{route('checkout2',$course->id)}}" class="btn btn-primary">Enroll Now</a>
             </div>
         </div>
     </div>
